@@ -1,0 +1,20 @@
+
+# DiffTW — core dependencies
+# Install with: pip install -r requirements.txt
+ 
+numpy==2.2.6
+scipy==1.15.3
+matplotlib==3.10.8
+tensorflow==2.21.0
+dtw-python==1.7.4
+ 
+# Optional: used in demo notebooks / analysis
+scikit-learn==1.7.2
+pandas==2.3.3
+seaborn==0.13.2
+tqdm==4.67.3
+ 
+# Jupyter (only needed if running .ipynb notebooks)
+# jupyter==1.1.1
+# jupyterlab==4.5.6
+ 
