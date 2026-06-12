@@ -44,8 +44,7 @@ project_root = os.path.abspath(
 sys.path.append(project_root)
 
 from difftw import get_beta, Optimization, DataLoader, proj_kernel
-from plotting import optimize_and_plot
-from characteristics import plot_warping_characteristics
+from plotting import optimize_and_plot, optimize_and_plot_dashboard, plot_warping_characteristics
 
 
 # %% [markdown]
@@ -326,6 +325,19 @@ if __name__ == "__main__":
         save_dir="plots",
     )
 
+# %%
+if __name__ == "__main__":
+    optimized_beta, loss_history = optimize_and_plot_dashboard(
+        overall=overall,
+        n_iters_beta=21,
+        n_steps_beta=20,
+        LAM=1e-4,
+        lr=0.00675,
+        beta_true=beta_true,   # remove this line when using real data
+        offset=4,              # Controls characteristic plot spacing
+        line_stride=16,        # Controls how many grey lines are plotted
+        save_dir="plots"
+    )
 
 # %% [markdown]
 # ---

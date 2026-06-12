@@ -47,7 +47,7 @@ project_root = os.path.abspath(
 sys.path.append(project_root)
 
 from difftw import get_beta, Optimization, DataLoader, proj_kernel
-from plotting import optimize_and_plot
+from plotting import optimize_and_plot, optimize_and_plot_dashboard
 from characteristics import plot_warping_characteristics
 
 
@@ -68,25 +68,25 @@ from characteristics import plot_warping_characteristics
 # ---------------------------------------------------------------------------
 
 # UCR: BME (default)
-#datapath_train = "/Users/vickyhaney/Documents/GAship/DrBruno/EKG/STW/UCRArchive_data/BME/BME_train_matrix.csv"
-#datapath_test  = "/Users/vickyhaney/Documents/GAship/DrBruno/EKG/STW/UCRArchive_data/BME/BME1_test_matrix.csv"
+#datapath_train = "/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/UCRArchive_data/BME/BME_train_matrix.csv"
+#datapath_test  = "/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/UCRArchive_data/BME/BME1_test_matrix.csv"
 
 # ---------------------------------------------------------------------------
 # Uncomment one of the blocks below to try a different dataset:
 # ---------------------------------------------------------------------------
 
 # UCR: ACSFone
-# datapath_train = '/path/to/UCRArchive_data/ACSFone/ACSFone_train_matrix.csv'
-# datapath_test  = '/path/to/UCRArchive_data/ACSFone/ACSFone0_test_matrix.csv'
+# datapath_train = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/UCRArchive_data/ACSFone/ACSFone_train_matrix.csv'
+# datapath_test  = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/UCRArchive_data/ACSFone/ACSFone0_test_matrix.csv'
 
 # UCR: Adiac
-# datapath_train = '/path/to/UCRArchive_data/Adiac/Adiac_train_matrix.csv'
-# datapath_test  = '/path/to/UCRArchive_data/Adiac/Adiac1_test_matrix.csv'
+# datapath_train = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/UCRArchive_data/Adiac/Adiac_train_matrix.csv'
+# datapath_test  = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/UCRArchive_data/Adiac/Adiac1_test_matrix.csv'
 
 # ECG data 
     
-datapath_train = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/STW/current_filtered_data/all1_train_matrix.csv'
-datapath_test = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/STW/current_filtered_data/N_test_matrix.csv' 
+datapath_train = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/ECG/all1_train_matrix.csv'
+datapath_test = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframes/ECG/N_test_matrix.csv' 
 
 
 # %% [markdown]
@@ -259,6 +259,25 @@ if __name__ == "__main__":
         save_dir="plots",
     )
 
+# %%
+# `optimize_and_plot_dashboard` runs the optimiser and renders a live 3x2 
+# dashboard that updates after each step, letting you watch the warping path 
+# evolve, and calculating the characteristic curves at the end.
+
+# %%
+if __name__ == "__main__":
+    optimized_beta, loss_history = optimize_and_plot_dashboard(
+        overall=overall,
+        n_iters_beta=11,
+        n_steps_beta=20,
+        LAM=1e-4,
+        lr=1 / (2 ** 9),
+        save_dir="plots",
+        phi0_label="N", 
+        phi1_label="R",
+        offset=4,           # Controls characteristic plot spacing
+        line_stride=4       # Controls how many grey lines are plotted
+    )
 
 # %% [markdown]
 # ---

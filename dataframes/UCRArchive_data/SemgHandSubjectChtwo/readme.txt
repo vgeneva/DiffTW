@@ -1,0 +1,1 @@
+znorm only in folder.
