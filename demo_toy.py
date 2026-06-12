@@ -2,7 +2,7 @@
 # # DiffTW Demo 1 — Synthetic Data
 #
 # This notebook demonstrates the DiffTW algorithm on **synthetically generated**
-# time series data.  This is a good starting point if you are new to DiffTW,
+# time series data.  This is a good starting point for DiffTW,
 # because the true warping function is known in advance and can be compared directly
 # against the learned result.
 #

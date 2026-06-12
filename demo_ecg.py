@@ -1,13 +1,13 @@
 # %% [markdown]
-# # DiffTW Demo 2 — Real Data (UCR Archive: BME)
+# # DiffTW Demo 2 — Real Data (ECG data and UCR Archive)
 #
 # This notebook applies the DiffTW algorithm to a **real-world** time series from
-# the UCR Time Series Archive.  The default dataset is **BME** (a benchmark
-# dataset of biomedical waveforms), but the commented-out paths at the top of the
+# the UCR Time Series Archive.  The default dataset is **ECG** (electrocardiogram), 
+# but the commented-out paths at the top of the
 # script show how to swap in other UCR datasets or your own CSV files.
 #
 # Unlike Demo 1, the true warping function is *unknown*.  The goal is to find a
-# smooth, differentiable velocity field β̂ that aligns one class of waveforms
+# smooth, differentiable velocity field β that aligns one class of waveforms
 # (φ₀, the test signal) to another (φ₁, the training signal).
 #
 # ## What this demo covers
@@ -57,7 +57,7 @@ from characteristics import plot_warping_characteristics
 #
 # Set `datapath_train` and `datapath_test` to point at your CSV files.
 # A selection of commented-out alternatives is provided below for convenience.
-# The active paths use the BME dataset from the UCR archive.
+# The active paths use the ECG dataset adn can be swtiched to datq from the UCR archive.
 #
 # To use your own data, replace the paths and ensure the CSV matrices match the
 # format described in the header above.
@@ -96,7 +96,7 @@ datapath_test = '/Users/vickyhaney/Documents/GAship/DrBruno/EKG/DiffTW/dataframe
 # `get_beta` accepts the CSV paths and a `DataLoader` to handle file I/O.
 # `indexphi0` and `indexphi1` select which rows of the train/test matrices to
 # use as the source signal (φ₀) and target signal (φ₁).  Change these integers
-# to align a different pair of waveforms.
+# to align a different pair of signals.
 
 # %%
 if __name__ == "__main__":
@@ -221,8 +221,7 @@ if __name__ == "__main__":
 # ---
 # ## Step 5 — Live optimization visualisation
 #
-# `optimize_and_plot` re-runs the optimiser (with a lower iteration count for
-# speed) and renders a live plot that updates after each step, letting you watch
+# `optimize_and_plot` re-runs the optimiser and renders a live plot that updates after each step, letting you watch
 # the warping path evolve.
 #
 # For real data there is no `beta_true` to pass, so the ground-truth overlay is
